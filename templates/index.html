@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Works log</h2>
+{% for work in param['activities'] %}
+<h3>Action #{{work.id}}</h3>
+<table class="table">
+    <tr class="table-secondary">
+        <td>Title of activity</td>
+        <td>Team leader</td>
+        <td>Duration</td>
+        <td>List of collaborators</td>
+        <td>Is finished</td>
+    </tr>
+    <tr>
+        <td class="table-primary">{{work.job}}</td>
+        <td class="table-primary">{{param['team_leaders'][loop.index0].surname}} {{param['team_leaders'][loop.index0].name}}</td>
+        <td class="table-primary">{{work.work_size}} hours</td>
+        <td class="table-primary">{{work.collaborators}}</td>
+        {% if work.is_finished %}
+        <td class="table-success">Is finished</td>
+        {% else %}
+        <td class="table-danger">Is not finished</td>
+        {% endif %}
+    </tr>
+</table>
+{% endfor %}
+{% endblock %}
